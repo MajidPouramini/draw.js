@@ -1,0 +1,5 @@
+export const RESIZER_CIRCLE_WIDTH_PX = 16;
+export const RESIZER_CIRCLE_HEIGHT_PX = 16;
+
+export const RESIZER_SIDE_ITEM_WIDTH_PX = 16;
+export const RESIZER_SIDE_ITEM_HEIGHT_PX = 16;

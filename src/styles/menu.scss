@@ -1,0 +1,14 @@
+.menu {
+  display: none;
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  background-color: #8655db;
+  left: 0;
+  top: 0;
+  //width: calc(100% - 2 * var(--editor-resizer-border-size));
+  //height: calc(100% - 2 * var(--editor-resizer-border-size));
+  //pointer-events: none;
+  z-index: 1;
+  border: var(--editor-resizer-border-size) solid var(--editor-primary);
+}
