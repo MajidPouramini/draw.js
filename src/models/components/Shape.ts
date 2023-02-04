@@ -1,7 +1,7 @@
-import { Component } from './Component';
-import { Border } from './Border';
-import { ShapeType } from '../interfaces/ShapeType';
-import { SHAPE_MAP } from '../constants/shapes/circle';
+import { Component } from '../Component';
+import { Border } from '../features/Border';
+import { ShapeType } from '../../interfaces/ShapeType';
+import { SHAPE_MAP } from '../../constants/shapes/circle';
 import { TextField } from './TextField';
 
 export class Shape extends Component {

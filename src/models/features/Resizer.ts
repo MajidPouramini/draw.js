@@ -1,5 +1,5 @@
-import { Component } from './Component';
-import { RESIZER_BUTTONS_POSITION } from '../constants/resizer';
+import { Component } from '../Component';
+import { RESIZER_BUTTONS_POSITION } from '../../constants/resizer';
 import { ResizerButton } from './ResizerButton';
 
 export class Resizer {

@@ -1,5 +1,5 @@
-import { BaseObject } from './BaseObject';
-import {Drawable} from "../interfaces/Drawable";
+import { BaseObject } from '../BaseObject';
+import { Drawable } from '../../interfaces/Drawable';
 
 export class Border implements Drawable {
   private _width: number = 0;
@@ -23,12 +23,9 @@ export class Border implements Drawable {
   }
 
   draw() {
-    let s = (this.object.content.firstChild as SVGElement);
-    s.setAttribute(
-      'stroke-width',
-      this._width.toString(),
-    );
-    s.setAttribute('stroke', this._color)
+    let s = this.object.content.firstChild as SVGElement;
+    s.setAttribute('stroke-width', this._width.toString());
+    s.setAttribute('stroke', this._color);
   }
 
   remove() {}

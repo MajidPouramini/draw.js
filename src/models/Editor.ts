@@ -1,7 +1,7 @@
 import { BaseObject } from './BaseObject';
 import { Component } from './Component';
 import { EditorOptions } from '../interfaces/EditorOptions';
-import { Border } from './Border';
+import { Border } from './features/Border';
 import { Point } from './misc/Point';
 import { ShortcutRepository } from './misc/ShortcutRepository';
 import { EditorUtils } from './misc/EditorUtils';
@@ -33,10 +33,7 @@ export class Editor extends BaseObject {
     this.components.forEach(component => this.content.appendChild(component.container));
   }
 
-  public addComponent(
-    component: Component,
-    options: { center: boolean } = { center: true },
-  ): void {
+  public addComponent(component: Component, options: { center: boolean } = { center: true }): void {
     options.center && component.centralize();
     this.placeComponent(component);
     this.deselectAllComponents();

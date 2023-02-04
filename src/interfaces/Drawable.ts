@@ -1,3 +1,3 @@
 export interface Drawable {
-    draw: () => void
+  draw: () => void;
 }

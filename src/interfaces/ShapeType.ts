@@ -1,1 +1,1 @@
-export type ShapeType = 'SQUARE' | 'CIRCLE' | 'TRIANGLE'
+export type ShapeType = 'SQUARE' | 'CIRCLE' | 'TRIANGLE';

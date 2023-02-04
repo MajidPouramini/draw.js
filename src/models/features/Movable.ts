@@ -1,5 +1,5 @@
-import { Component } from './Component';
-import { Editor } from './Editor';
+import { Component } from '../Component';
+import { Editor } from '../Editor';
 
 export class Movable {
   private clientXChange: number = 0;

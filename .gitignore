@@ -11,8 +11,8 @@
 # testing
 /coverage
 
-# production
-/build
+# packaging
+/lib
 
 # misc
 .DS_Store

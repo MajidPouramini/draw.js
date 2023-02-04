@@ -1,1 +1,1 @@
-export type ComponentType = 'CIRCLE' | 'TRIANGLE' | 'SQUARE' | 'IMAGE' | ''
+export type ComponentType = 'CIRCLE' | 'TRIANGLE' | 'SQUARE' | 'IMAGE' | '';

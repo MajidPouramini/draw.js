@@ -1,9 +1,9 @@
 import { BaseObject } from './BaseObject';
 import { TriangleSvg } from '../constants/shapes/triangle';
 import { Editor } from './Editor';
-import { Cropper } from './Cropper';
-import { Resizer } from './Resizer';
-import { Movable } from './Movable';
+import { Cropper } from './features/Cropper';
+import { Resizer } from './features/Resizer';
+import { Movable } from './features/Movable';
 import { Point } from './misc/Point';
 
 export class Component extends BaseObject {

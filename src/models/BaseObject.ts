@@ -111,5 +111,4 @@ export class BaseObject {
   public isSelected() {
     return this.selected;
   }
-
 }

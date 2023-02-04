@@ -1,3 +1,3 @@
 export interface StateOption {
-    saveSnapshot: boolean
+  saveSnapshot: boolean;
 }

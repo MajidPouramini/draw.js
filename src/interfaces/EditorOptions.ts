@@ -1,4 +1,4 @@
 export interface EditorOptions {
-    hasHiddenOverflow?: boolean;
-    preserveScaleAspectRation?: boolean;
+  hasHiddenOverflow?: boolean;
+  preserveScaleAspectRation?: boolean;
 }

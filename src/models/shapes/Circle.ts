@@ -1,4 +1,4 @@
-import { Shape } from '../Shape';
+import { Shape } from '../components/Shape';
 
 export class Circle extends Shape {
   constructor() {
