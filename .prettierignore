@@ -1,0 +1,11 @@
+node_modules
+# Ignore artifacts:
+build
+coverage
+yarn.lock
+webpack.config.js
+tsconfig.json
+tsconfig.base.json
+Dockerfile
+electron
+public

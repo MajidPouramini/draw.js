@@ -1,0 +1,29 @@
+{
+  "name": "draw.js",
+  "version": "0.0.1",
+  "description": "Create beauty",
+  "main": "index.js",
+  "dependencies": {
+    "sass": "^1.51.0",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "prettier": "2.6.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MajidPouramini/draw.js.git"
+  },
+  "keywords": [
+    "Draw"
+  ],
+  "author": "Majid Pouramini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MajidPouramini/draw.js/issues"
+  },
+  "homepage": "https://github.com/MajidPouramini/draw.js#readme"
+}
