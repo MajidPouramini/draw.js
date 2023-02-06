@@ -6,9 +6,7 @@ export class Video extends Component {
   sourceElement!: HTMLSourceElement;
 
   private player = new Player(this);
-  constructor(
-    public src: string = 'https://dl2.nikimoviez.ir/sersi2/B/The.Boys./dub3/The.Boys.S03E07.720p.WEB-DL.Farsi.Dubbed.mkv',
-  ) {
+  constructor(public src: string) {
     super();
     this.createVideoElement();
     this.setVideoOnLoad();
@@ -20,7 +18,7 @@ export class Video extends Component {
 
   private createVideoElement(): void {
     this.videoElement = document.createElement('video');
-    this.videoElement.className = 'image';
+    this.videoElement.className = 'video';
     this.createSourceElement();
     this.content.appendChild(this.videoElement);
   }

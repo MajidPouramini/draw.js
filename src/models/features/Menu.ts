@@ -1,4 +1,4 @@
-import { BaseObject } from './BaseObject';
+import { BaseObject } from '../BaseObject';
 
 export class Menu {
   constructor(private object: BaseObject) {
