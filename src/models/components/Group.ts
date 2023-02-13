@@ -39,4 +39,13 @@ export class Group extends Component {
 
     // this.components.forEach(component => this.content.appendChild(component.container));
   }
+
+  clone (): Component {
+    // todo
+    return this
+  }
+
+  clonePropertiesFrom (cloneSource: Component): void {
+    // todo
+  }
 }

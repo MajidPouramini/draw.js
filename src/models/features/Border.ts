@@ -2,31 +2,47 @@ import { BaseObject } from '../BaseObject';
 import { Drawable } from '../../interfaces/Drawable';
 
 export class Border implements Drawable {
-  private _width: number = 0;
-  private _color: string = '#5656cc';
-  private _style: string = 'solid';
+  private width: number = 0;
+  private color: string = '#5656cc';
+  private style: string = 'solid';
 
-  constructor(private object: BaseObject) {}
+  constructor(private object: BaseObject, cloneSource?: Border) {
+    if (cloneSource) {
+      this.setBorderPropertiesFrom(cloneSource);
+    }
+  }
 
-  set width(width: number) {
-    this._width = width;
+  public setWidth(width: number) {
+    this.width = width;
     this.draw();
   }
 
-  set color(color: string) {
-    this._color = color;
+  public setColor(color: string) {
+    this.color = color;
     this.draw();
   }
 
-  set style(style: string) {
-    this._style = style;
+  public setStyle(style: string) {
+    this.style = style;
   }
 
-  draw() {
+  public draw() {
     let s = this.object.content.firstChild as SVGElement;
-    s.setAttribute('stroke-width', this._width.toString());
-    s.setAttribute('stroke', this._color);
+    s.setAttribute('stroke-width', this.width.toString());
+    s.setAttribute('stroke', this.color);
   }
 
-  remove() {}
+  public remove(): void {
+    this.setWidth(0);
+  }
+
+  public clone(): Border {
+    return new Border(this.object, this)
+  }
+
+  private setBorderPropertiesFrom(cloneSource: Border): void {
+    this.width = cloneSource.width;
+    this.color = cloneSource.color;
+    this.style = cloneSource.style;
+  }
 }

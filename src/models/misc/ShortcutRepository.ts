@@ -16,7 +16,6 @@ export class ShortcutRepository {
         this.isHoldingCtrl = true;
       }
       if (ShortcutRepository.registeredShortcuts.map(shortcut => shortcut.key).includes(e.key)) {
-        e.preventDefault();
         ShortcutRepository.registeredShortcuts
           .find(shortcut => shortcut.key === e.key)!
           .callback(editor);

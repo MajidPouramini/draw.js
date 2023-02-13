@@ -1,5 +1,6 @@
 @use 'theme' as theme;
 @use 'resizer' as resizer;
+@import "loader";
 
 :root {
   @include theme.variables;

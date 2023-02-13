@@ -1,11 +1,15 @@
 import { Component } from '../Component';
-import { RESIZER_BUTTONS_POSITION } from '../../constants/resizer';
+import {
+  RESIZER_BUTTONS_POSITION,
+  SIDE_BUTTONS_POSITION,
+} from '../../constants/resizer';
 import { ResizerButton } from './ResizerButton';
 
 export class Resizer {
   public element!: HTMLDivElement;
-  private buttons: ResizerButton[] = [];
+  private resizerButtons: ResizerButton[] = [];
   private tooltip!: HTMLDivElement;
+  private preserveAspectRatio: boolean = false;
 
   constructor(private component: Component) {
     this.draw();
@@ -24,13 +28,17 @@ export class Resizer {
   }
 
   private drawResizerButtons(): void {
+    this.resizerButtons = []
     RESIZER_BUTTONS_POSITION.forEach(position => {
+      if (this.preserveAspectRatio && SIDE_BUTTONS_POSITION.includes(position)) {
+        return;
+      }
       const button: ResizerButton = new ResizerButton(position, this.component, this);
-      this.buttons.push(button);
+      this.resizerButtons.push(button);
     });
   }
 
-  private drawWidthAndHeightTooltip() {
+  private drawWidthAndHeightTooltip(): void {
     this.tooltip = document.createElement('div');
     this.tooltip.className = 'resizer-tooltip';
     this.element.appendChild(this.tooltip);
@@ -46,15 +54,15 @@ export class Resizer {
   }
 
   public showAllButtons(): void {
-    this.buttons.forEach(button => button.show());
+    this.resizerButtons.forEach(button => button.show());
   }
 
   public hideAllButtons(): void {
-    this.buttons.forEach(button => button.hide());
+    this.resizerButtons.forEach(button => button.hide());
   }
 
   public hideAllButtonsExcept(except: ResizerButton): void {
-    this.buttons.filter(button => button !== except).forEach(button => button.hide());
+    this.resizerButtons.filter(button => button !== except).forEach(button => button.hide());
   }
 
   public showTooltip(): void {

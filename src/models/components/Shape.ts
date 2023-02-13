@@ -1,5 +1,5 @@
 import { Component } from '../Component';
-import { Border } from '../features/Border';
+import { Border } from '../features';
 import { ShapeType } from '../../interfaces/ShapeType';
 import { SHAPE_MAP } from '../../constants/shapes/circle';
 import { TextField } from './TextField';
@@ -8,17 +8,20 @@ export class Shape extends Component {
   public border: Border = new Border(this);
   public textEditor: TextField = new TextField(this);
 
-  constructor(private type: ShapeType) {
-    super();
+  constructor(private type: ShapeType, cloneSource?: Shape) {
+    super(cloneSource);
+    if (cloneSource) {
+      this.clonePropertiesFrom(cloneSource);
+    }
     this.draw();
   }
 
-  setType(type: ShapeType) {
+  public setType(type: ShapeType): void {
     this.type = type;
     this.draw();
   }
 
-  getType(): ShapeType {
+  public getType(): ShapeType {
     return this.type;
   }
 
@@ -61,5 +64,13 @@ export class Shape extends Component {
       );
       path.setAttribute('fill', this.getBackgroundColor());
     }
+  }
+
+  public override clone(): Shape {
+    return new Shape(this.type, this);
+  }
+
+  public override clonePropertiesFrom(cloneSource: Shape) {
+    this.border = cloneSource.border.clone();
   }
 }

@@ -1,18 +1,27 @@
 import { Component } from '../Component';
 import { Player } from '../misc/Player';
+import { Editor } from '../Editor';
+import { Loader } from '../features';
 
 export class Video extends Component {
   videoElement!: HTMLVideoElement;
   sourceElement!: HTMLSourceElement;
 
-  private player = new Player(this);
-  constructor(public src: string) {
-    super();
+  private loader: Loader = new Loader(this);
+  private player: Player = new Player(this);
+
+  constructor(public src: string, cloneSource?: Video) {
+    super(cloneSource);
+
+    this.setWidth(200);
+    this.setHeight(100);
     this.createVideoElement();
+    this.loader.enable();
     this.setVideoOnLoad();
     this.draw();
   }
-  public draw() {
+
+  public draw(): void {
     super.draw();
   }
 
@@ -31,9 +40,18 @@ export class Video extends Component {
 
   private setVideoOnLoad(): void {
     this.videoElement.onloadedmetadata = event => {
-      this.setWidth((event.target as any).videoWidth);
-      this.setHeight((event.target as any).videoHeight);
-      this.centralize();
+      const editor: Editor = Editor.getInstance();
+
+      this.loader.disable();
+      this.videoElement.controls = true;
+
+      this.setWidth((event.target as HTMLVideoElement).videoWidth);
+      this.setHeight((event.target as HTMLVideoElement).videoHeight);
+      if (this.getHeight() > editor.getHeight() || this.getWidth() > editor.getWidth()) {
+        this.fitToEditor();
+      } else {
+        this.centralize();
+      }
     };
   }
 
@@ -47,5 +65,12 @@ export class Video extends Component {
 
   public fullScreen() {
     this.videoElement.requestFullscreen().then();
+  }
+
+  public override clone(): Video {
+    return new Video(this.src, this);
+  }
+
+  public override clonePropertiesFrom (cloneSource: Component): void {
   }
 }

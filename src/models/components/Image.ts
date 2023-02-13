@@ -1,15 +1,22 @@
 import { Component } from '../Component';
+import { Loader } from '../features';
 
 export class Image extends Component {
   imageElement!: HTMLImageElement;
-  constructor(public src: string = 'https://picsum.photos/536/354') {
-    super();
+
+  private loader: Loader = new Loader(this);
+  constructor(
+    public src: string = 'https://static.vecteezy.com/packs/media/vectors/term-bg-1-3d6355ab.jpg',
+    cloneSource?: Image,
+  ) {
+    super(cloneSource);
+    if (cloneSource) {
+      this.clonePropertiesFrom(cloneSource);
+    }
+    this.loader.enable();
     this.createImageElement();
     this.setImageOnLoad();
     this.draw();
-  }
-  public draw() {
-    super.draw();
   }
 
   private createImageElement(): void {
@@ -21,9 +28,18 @@ export class Image extends Component {
 
   private setImageOnLoad(): void {
     this.imageElement.onload = () => {
+      this.loader.disable();
       this.setWidth(this.imageElement.width);
       this.setHeight(this.imageElement.height);
       this.centralize();
     };
+  }
+
+  clone(): Component {
+    return new Image(this.src, this);
+  }
+
+  clonePropertiesFrom(cloneSource: Image): void {
+    this.src = cloneSource.src;
   }
 }

@@ -1,4 +1,4 @@
-import { ResizerItemPosition } from '../../constants/resizer';
+import { ResizerButtonPosition } from '../../constants/resizer';
 import { Component } from '../Component';
 import { Resizer } from './Resizer';
 
@@ -10,7 +10,7 @@ export class ResizerButton {
   private lastYClient: number = 0;
 
   constructor(
-    private position: ResizerItemPosition,
+    private position: ResizerButtonPosition,
     private component: Component,
     private resizer: Resizer,
   ) {

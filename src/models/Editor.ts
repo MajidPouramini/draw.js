@@ -1,22 +1,26 @@
 import { BaseObject } from './BaseObject';
 import { Component } from './Component';
 import { EditorOptions } from '../interfaces/EditorOptions';
-import { Border } from './features/Border';
+import { Border } from './features';
 import { Point } from './misc/Point';
 import { ShortcutRepository } from './misc/ShortcutRepository';
 import { EditorUtils } from './misc/EditorUtils';
-import { Group } from './components/Group';
+import { Group } from './components';
+import { SAME_POSITION_OBJECT_OFFSET } from '../constants';
 
 export class Editor extends BaseObject {
   private border: Border = new Border(this);
-  components: Component[] = [];
+  public components: Component[] = [];
   private static instance?: Editor;
   private shortcutRepository: ShortcutRepository = new ShortcutRepository(this);
 
   public utils: EditorUtils = new EditorUtils(this);
 
   constructor(boardId: string, width: number, height: number, private options?: EditorOptions) {
-    super(width, height);
+    super();
+
+    this.setWidth(width);
+    this.setHeight(height);
     this.draw();
     const board = document.getElementById(boardId);
     this.addEditorEventListeners();
@@ -43,10 +47,10 @@ export class Editor extends BaseObject {
     this.draw();
   }
 
-  private placeComponent(component: Component) {
+  private placeComponent(component: Component): void {
     while (this.anotherComponentAlreadyExistInPosition(component.getTop(), component.getLeft())) {
-      component.changeTopBy(10);
-      component.changeLeftBy(10);
+      component.changeTopBy(SAME_POSITION_OBJECT_OFFSET);
+      component.changeLeftBy(SAME_POSITION_OBJECT_OFFSET);
     }
   }
 
@@ -66,7 +70,9 @@ export class Editor extends BaseObject {
 
   public export(): string {
     this.deselectAllComponents();
-    return `<div style="overflow: hidden; width: max-content; height: max-content" >${this.container.outerHTML}</div>`;
+    return `<div style="overflow: hidden; width: max-content; height: max-content" >
+              ${this.container.outerHTML}
+            </div>`;
   }
 
   public removeSelectedComponent(): void {
@@ -116,12 +122,19 @@ export class Editor extends BaseObject {
     this.components.forEach(component => component.deselect());
   }
 
-  private addEditorEventListeners() {
-    this.container.addEventListener('click', event => {
-      if ((event.target as any).className === 'content') {
-        this.deselectAllComponents();
-      }
-    });
+  private addEditorEventListeners(): void {
+    // document.addEventListener('click', event => {
+    //   if ((event.target as any).className === 'content') {
+    //     this.deselectAllComponents();
+    //   }
+    // });
+  }
+
+  public duplicateSelectedComponent(): void {
+    const selectedComponent: Component | undefined = this.getSelectedComponent()?.clone();
+    if (selectedComponent) {
+      this.addComponent(selectedComponent, { center: false });
+    }
   }
 
   private removeAllComponentsFromDOM(): void {
